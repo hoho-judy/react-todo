@@ -33,7 +33,7 @@ export function HomePage() {
       id: '1',
       contents: '첫번째 투두',
       completed: true,
-      editing: false,
+      editing: true,
     },
     {
       id: '2',
@@ -44,8 +44,8 @@ export function HomePage() {
     {
       id: '3',
       contents: '세번째 투두',
-      completed: true,
-      editing: true,
+      completed: false,
+      editing: false,
     },
   ]);
 
