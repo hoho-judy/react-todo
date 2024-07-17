@@ -6,7 +6,6 @@ const Box = styled.div<{ isEditing?: boolean }>`
   align-items: center;
   padding: ${props => (props.isEditing ? '5px 0px' : '15px 25px')};
   width: 100%;
-  font-size: 1.2em;
   border-bottom: 1px solid #eee;
 `;
 
@@ -17,19 +16,19 @@ const Input = styled.input`
 `;
 
 export default function TodoInput({
-  setTodoList,
+  addTodo,
   isEditing,
   editContent,
   editModeTodo,
   editTodo,
 }: {
-  setTodoList?: (todo: ITodoItem) => void;
+  addTodo?: (content: string) => void;
   isEditing?: boolean;
   editContent?: string;
   editModeTodo?: () => void;
   editTodo?: (content: string) => void;
 }) {
-  const [content, setContent] = React.useState<string>('');
+  const [content, setContent] = React.useState<string>(editContent || '');
   return (
     <Box isEditing={isEditing}>
       <Input
@@ -47,13 +46,7 @@ export default function TodoInput({
           if (isEditing) {
             editTodo && editTodo(content);
           } else {
-            setTodoList &&
-              setTodoList({
-                id: '0',
-                contents: content,
-                completed: false,
-                editing: false,
-              });
+            addTodo && addTodo(content);
             setContent('');
           }
         }}
